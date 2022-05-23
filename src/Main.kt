@@ -14,7 +14,7 @@ fun main(args:Array<String>) {
     println("Bienvenido al   sistema de cursos (SOFC)")
 
     do {
-        print("Seleccione un curso : \n1)Cursos de Cocina\n2)Cursos de Programación \n3)Obtener todos\n3)Salir")
+        println("Seleccione un curso : \n1)Cursos de Cocina\n2)Cursos de Programación \n3)Obtener todos\n4)Salir")
         optMain = readLine().toString().toInt()
         when (optMain) {
             1 -> {
