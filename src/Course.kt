@@ -1,10 +1,10 @@
 import java.util.UUID
 import java.util.UUID.randomUUID
 
-open class Course (var name : String = "", var description : String = "",var id : Int? = 0){
+open class Course (var name : String = "", var description : String = "",var id : String? = ""){
 
     init {
-        id = Integer.parseInt(randomUUID().toString())
+        id = randomUUID().toString()
     }
 
 
