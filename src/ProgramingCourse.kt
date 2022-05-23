@@ -1,4 +1,4 @@
-class ProgramingCourse (id: Int, name: String, description: String) : Course (id, name, description){
+class ProgramingCourse ( name: String, description: String) : Course (name, description){
 
 
 
