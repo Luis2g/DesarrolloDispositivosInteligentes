@@ -10,6 +10,8 @@ fun main(args:Array<String>) {
     var optCookingCourse: Int
     var idCookingCourse: Int
     var updateCookingCourseValidation: String
+    var idProgramingCourse: Int
+    var updateProgramingValidation: String
     var idAddCookingCourse: Int
 
     println("Bienvenido al   sistema de cursos (SOFC)")
@@ -52,9 +54,9 @@ fun main(args:Array<String>) {
                                 updateCookingCourseValidation = readLine().toString()
                                 cookingCourses[idCookingCourse-1].name  = updateCookingCourseValidation
                                 println("¿Cuál es la nueva descripción del curso?")
-                                cookingCourses[idCookingCourse].name = readLine().toString()
+                                cookingCourses[idCookingCourse - 1].description = readLine().toString()
 
-                                if(cookingCourses[idCookingCourse].name.equals(updateCookingCourseValidation)){
+                                if(cookingCourses[idCookingCourse-1].name.equals(updateCookingCourseValidation)){
                                     println(CompanionObject.SUCCESS_MESSAGE)
                                 }else{
                                     println(CompanionObject.ERROR_MESSAGE)
@@ -83,8 +85,8 @@ fun main(args:Array<String>) {
                             }else{
                                 println("Cursos de cocina: ")
                                 for(i in 0 until cookingCourses.size){
-                                    println("${i+1}).-${cookingCourses[i].name}")
-                                    println("${i+1}).-${cookingCourses[i].description}")
+                                    println("${i+1}) ${cookingCourses[i].name}")
+                                    println(" ${cookingCourses[i].description}")
                                 }
                             }
                         }
@@ -121,7 +123,6 @@ fun main(args:Array<String>) {
 
                                 var programmingCourse = ProgramingCourse(courseName, courseDescription)
 
-                                programmingCourses.add(programmingCourse)
                                 if (programmingCourses.add(programmingCourse)) {
                                     println(CompanionObject.SUCCESS_MESSAGE)
                                 } else {
@@ -130,30 +131,35 @@ fun main(args:Array<String>) {
 
                             }
                             2 -> {
-                                println("======= Editar curso =======")
-                                for(i in 0 until programmingCourses.size){
-                                    println("${i+1}) ${programmingCourses[i]}")
-                                }
-                                println("Selecciona el número del curso: ")
-                                var index : Int = readLine().toString().toInt()
-                                var newNameCourse : String
-                                var newDescriptionCourse : String
-                                if (index >= 0 || index <= programmingCourses.size){
-                                    println("Introduce el nuevo nombre del curso de programación: ")
-                                    newNameCourse = readLine().toString()
-                                    println("Introduce la nueva descripcion del curso de programación: ")
-                                    newDescriptionCourse = readLine().toString()
-                                    programmingCourses[index - 1].name = newNameCourse
-                                    programmingCourses[index - 1].description = newDescriptionCourse
-                                    println(CompanionObject.SUCCESS_MESSAGE)
+                                if(programmingCourses.size != 0){
+
+
+                                    println("¿Cuál curso desea editar?")
+                                    for(i in 0 until  programmingCourses.size){
+                                        println("${i + 1}) ${programmingCourses[i].name} ")
+                                    }
+                                    idProgramingCourse = readLine().toString().toInt()
+                                    println("¿Cuál es el nuevo nombre del curso?")
+                                    updateProgramingValidation = readLine().toString()
+                                    programmingCourses[idProgramingCourse-1].name  = updateProgramingValidation
+                                    println("¿Cuál es la nueva descripción del curso?")
+                                    programmingCourses[idProgramingCourse - 1].description = readLine().toString()
+
+                                    if(programmingCourses[idProgramingCourse-1].name.equals(updateProgramingValidation)){
+                                        println(CompanionObject.SUCCESS_MESSAGE)
+                                    }else{
+                                        println(CompanionObject.ERROR_MESSAGE)
+                                    }
+
+
                                 }else{
-                                    println(CompanionObject.INFO_ID_MESSAGE)
+                                    println(CompanionObject.LIST_NULL)
                                 }
                             }
                             3 -> {
                                 println("======= Eliminar curso =======")
                                 for (i in 0 until programmingCourses.size) {
-                                    println("${i+1}) ${programmingCourses[i]}")
+                                    println("${i+1}) ${programmingCourses[i].name}")
                                 }
                                 println("Selecciona el número del curso a eliminar:")
                                 var index : Int = readLine().toString().toInt()
@@ -171,7 +177,8 @@ fun main(args:Array<String>) {
                                 }else{
                                     println("Cursos de programación: ")
                                     for(i in 0 until programmingCourses.size){
-                                        println("${i+1}).-${programmingCourses[i]}")
+                                        println("${i+1}).-${programmingCourses[i].name}")
+                                        println("${programmingCourses[i].description}")
                                     }
                                 }
                             }
@@ -194,7 +201,8 @@ fun main(args:Array<String>) {
                     println(CompanionObject.EMPTY_LIST)
                 }else{
                     for(i in 0 until cookingCourses.size){
-                        println("${i+1}).-${cookingCourses[i]}")
+                        println("${i+1}).-${cookingCourses[i].name}")
+                        println("${cookingCourses[i].description}")
                     }
                 }
                 println("Cursos de programación: ")
@@ -202,7 +210,8 @@ fun main(args:Array<String>) {
                     println(CompanionObject.EMPTY_LIST)
                 }else{
                     for(i in 0 until programmingCourses.size){
-                        println("${i+1}).-${programmingCourses[i]}")
+                        println("${i+1}).-${programmingCourses[i].name}")
+                        println("${programmingCourses[i].description}")
                     }
                 }
             }
