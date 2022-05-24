@@ -10,6 +10,7 @@ fun main(args:Array<String>) {
     var optCookingCourse: Int
     var idCookingCourse: Int
     var updateCookingCourseValidation: String
+    var idAddCookingCourse: Int
 
     println("Bienvenido al   sistema de cursos (SOFC)")
 
@@ -29,10 +30,14 @@ fun main(args:Array<String>) {
                             println("Ingresa la descripción del curso")
                             var description:String = readLine().toString()
                             var curso:CookingCourse = CookingCourse(name,description)
-                            if(curso!=null)
+                            if(curso!=null){
+                                cookingCourses.add(curso)
                                 println(CompanionObject.SUCCESS_MESSAGE)
-                            else
+                            }
+                            else{
                                 println(CompanionObject.ERROR_MESSAGE)
+                            }
+
                         }
                         2->{
                             if(cookingCourses.size != 0){
@@ -62,20 +67,15 @@ fun main(args:Array<String>) {
                         }
                         3->{
                             println("¿Cuál desea eliminar?")
-                            println("Ingresa el id de el curso desea eliminar:")
-                            var id:Int = readLine().toString().toInt()
-                            var isDelete:Boolean=false
-                            for(i in 0 until cookingCourses.size){
-                                if(cookingCourses[i].id ==id){
-                                    cookingCourses.remove(cookingCourses[i])
-                                    isDelete=true
-                                }
-                            }
+                            println("Seleccione curso desea eliminar:")
 
-                            if(isDelete)
-                                println(CompanionObject.SUCCESS_MESSAGE)
-                            else
-                                println(CompanionObject.ERROR_MESSAGE)
+                            for(i in 0 until cookingCourses.size){
+                                println("${i + 1 }) ${cookingCourses[i].name}")
+                            }
+                            idAddCookingCourse = readLine().toString().toInt()
+
+                            cookingCourses.removeAt(idAddCookingCourse - 1)
+
                         }
                         4->{
                             if (cookingCourses.size == 0){
@@ -83,7 +83,8 @@ fun main(args:Array<String>) {
                             }else{
                                 println("Cursos de cocina: ")
                                 for(i in 0 until cookingCourses.size){
-                                    println("${i+1}).-${cookingCourses[i]}")
+                                    println("${i+1}).-${cookingCourses[i].name}")
+                                    println("${i+1}).-${cookingCourses[i].description}")
                                 }
                             }
                         }
@@ -103,9 +104,12 @@ fun main(args:Array<String>) {
             2 -> {
 
                 // ProgrammingCourse
-                println("Curso de programación\n1. Añadir curso\n2. Actualizar curso\n3. Eliminar curso\n4. Obtener curso\n5. Regresar al menú principal")
-                var optProgramming: Int = readLine().toString().toInt()
+
                 do{
+
+                    println("Curso de programación\n1. Añadir curso\n2. Actualizar curso\n3. Eliminar curso\n4. Obtener curso\n5. Regresar al menú principal")
+                    var optProgramming: Int = readLine().toString().toInt()
+
                     var flagProgramming : Boolean;
                     when (optProgramming) {
                             1 -> {
